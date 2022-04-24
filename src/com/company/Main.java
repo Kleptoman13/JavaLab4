@@ -22,37 +22,17 @@ public class Main {
 
     public static void task1()
     {
-        Scanner in = new Scanner(System.in);
-        Product product1 = new Product();
-        Product product2 = new Product();
-        Product product3 = new Product();
-        Product[] products = new Product[]{product1, product2, product3};
+        Product product1 = new Product(8, 260, 2019, "IKEA");
+        Product product2 = new Product(5, 1080, 2021, "IKEA");
+        Product product3 = new Product(5, 560, 2014, "IKEA");
 
-        product1.setCount(8);
-        product1.setPrice(260);
-        product1.setYear(2019);
-        product1.setProduction("IKEA");
+        Products products = new Products(3);
+        products.addProduct(product1);
+        products.addProduct(product2);
+        products.addProduct(product3);
 
-        product2.setCount(5);
-        product2.setPrice(1080);
-        product2.setYear(2021);
-        product2.setProduction("IKEA");
+        System.out.println(products.findNeedYear());
 
-        product3.setCount(5);
-        product3.setPrice(560);
-        product3.setYear(2014);
-        product3.setProduction("IKEA");
-
-        int common = 0;
-        for (int i = 0; i < products.length; i++) {
-            if (2022 - products[i].getYear() >= 2)
-            {
-                common += products[i].getCount();
-                products[i].vivod();
-            }
-        }
-
-        System.out.println("Количество товаров, произведённых более чем два года назад: " + common + " шт.");
     }
 
     /**
@@ -69,42 +49,18 @@ public class Main {
 
     public static void task2()
     {
-        Scanner in = new Scanner(System.in);
-        Product1 product1 = new Product1();
-        Product1 product2 = new Product1();
-        Product1 product3 = new Product1();
+        Product1 product1 = new Product1("Hleb", 20, LocalDate.of(2022, 1, 30), LocalDate.of(2022, 2, 23), 8, "Bulochnaya");
+        Product1 product2 = new Product1("Молоко", 30, LocalDate.of(2022, 4, 18), LocalDate.of(2022, 4, 15), 15, "Корова");
+        Product1 product3 = new Product1("Яйца", 2, LocalDate.of(2022, 4, 8), LocalDate.of(2022, 4, 23), 40, "Курица");
 
-        Product1[] products = new Product1[]{product1, product2, product3};
+        Products1 products = new Products1(3);
+        products.addProduct(product1);
+        products.addProduct(product2);
+        products.addProduct(product3);
 
-        product1.setName("Хлеб");
-        product1.setPrice(20);
-        product1.setData(LocalDate.of(2022, 1, 23));
-        product1.setSroc(LocalDate.of(2022, 2, 23));
-        product1.setCount(8);
-        product1.setProduction("Булочная");
+        System.out.println(products);
 
-        product2.setName("Молоко");
-        product2.setPrice(30);
-        product2.setData(LocalDate.of(2022, 4, 13));
-        product2.setSroc(LocalDate.of(2022, 4, 15));
-        product2.setCount(15);
-        product2.setProduction("Корова");
-
-        product3.setName("Яйца");
-        product3.setPrice(2);
-        product3.setData(LocalDate.of(2022, 4, 8));
-        product3.setSroc(LocalDate.of(2022, 4, 23));
-        product3.setCount(40);
-        product3.setProduction("Курица");
-        int sum = 0;
-        for (int i = 0; i < products.length; i++) {
-            if (LocalDate.now().isAfter(products[i].getSroc()))
-            {
-                sum += (products[i].getPrice() * products[i].getCount());
-            }
-        }
-
-        System.out.println("Общая стоимость простроченных товаров: " + sum + " грн");
+        System.out.println("общую стоимость просроченных товаров: " + products.commonPrice());
     }
 
 }
